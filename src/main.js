@@ -8,9 +8,3 @@ createApp(App)
     .use(router)
     // .use(vuetify)
     .mount('#app')
-// Vue.config.productionTip = false;
-
-// new Vue({
-//     router,
-//     render: (h) => h(App),
-//   }).$mount("#app");

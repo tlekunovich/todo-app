@@ -6,12 +6,24 @@
 </template>
 
 <script>
+// import axios from 'axios' 
+
 export default {
+
+ 
+  props: ["todos"],
   data() {
     return {
       title: "",
-    };
+      };
   },
+  // mounted(){
+  //   axios.get("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todo.json", this.todos).then(
+  //     response => {
+  //       console.log(response)
+  //     }
+  //   )
+  // },
   methods: {
     onSubmit() {
       console.log("submit", this.title);
@@ -37,6 +49,9 @@ form {
 }
 
 input {
-  width: 400px;
+    min-width: 60%;
+    height: 20px; 
+    margin-right:5px;
+    padding-left: 10px;
 }
 </style>

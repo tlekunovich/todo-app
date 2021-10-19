@@ -1,13 +1,16 @@
 <template>
   <div>
     <h2>to-do list</h2>
-    <AddTodo @addTodo='addTodo'/>
+    <AddTodo 
+      @addTodo='addTodo'
+      v-bind:todos="todos"
+      />
     <TodoList 
       v-bind:todos="todos" 
       v-on:remove-todo="removeTodo" 
       v-if="todos.length"
       />
-      <div v-else>
+      <div class="message" v-else>
         No todos!
       </div>
 
@@ -30,6 +33,7 @@ export default {
       ],
     };
   },
+  
   methods: {
     removeTodo(id) {
       this.todos = this.todos.filter((elem) => {
@@ -39,6 +43,7 @@ export default {
     addTodo(todo) {
       this.todos.push(todo);
     },
+
   },
 
   components: {
@@ -47,3 +52,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.message{
+  padding-bottom: 40px ;
+}
+</style>

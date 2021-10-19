@@ -42,6 +42,8 @@ li {
   justify-content: space-between;
   padding: 0.5rem 2rem;
   margin-bottom: 1rem;
+  min-width: 900px;
+  border-radius: 10px;
 }
 .rm {
   background: red;
@@ -51,6 +53,7 @@ li {
 }
 input {
   margin-right: 1rem;
+  
 }
 .done {
   text-decoration: line-through;
