@@ -18,9 +18,9 @@ export default {
       };
   },
   // mounted(){
-  //   axios.get("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todo.json", this.todos).then(
+  //   axios.get("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos.json").then(
   //     response => {
-  //       console.log(response)
+  //       console.log("get",response)
   //     }
   //   )
   // },
@@ -49,9 +49,10 @@ form {
 }
 
 input {
-    min-width: 60%;
+    width: 900px;
     height: 20px; 
     margin-right:5px;
-    padding-left: 10px;
+    /* padding-left: 10px; */
+    /* margin-left: 50px ; */
 }
 </style>
