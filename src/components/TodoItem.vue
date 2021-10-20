@@ -12,7 +12,9 @@
 </template>
 
 <script>
+
 import { ref } from "vue";
+
 export default {
   props: {
     todoProps: {
@@ -21,6 +23,7 @@ export default {
     },
     index: Number,
   },
+  
   setup: (props) => {
     const todo = ref(props.todoProps);
     const markComplete = () => {

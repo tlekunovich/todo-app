@@ -7,14 +7,29 @@
 
 <script>
 // import axios from 'axios'
+import {ref} from 'vue'
 
 export default {
   props: ["todos"],
-  data() {
-    return {
-      title: "",
-    };
-  },
+  setup: () => {
+  const title = ref("")
+
+  function onSubmit(){
+    if (title.value.trim()) {
+        const newTodo = {
+          id: Date.now(),
+          title: title.value,
+          completed: false,
+        };
+        this.$emit("addTodo", newTodo);
+        title.value = "";
+      }
+  }
+  return {
+    title,
+    onSubmit
+  }
+}
   // mounted(){
   //   axios.get("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos.json").then(
   //     response => {
@@ -22,20 +37,6 @@ export default {
   //     }
   //   )
   // },
-  methods: {
-    onSubmit() {
-      console.log("submit", this.title);
-      if (this.title.trim()) {
-        const newTodo = {
-          id: Date.now(),
-          title: this.title,
-          completed: false,
-        };
-        this.$emit("addTodo", newTodo);
-        this.title = "";
-      }
-    },
-  },
 };
 </script>
 

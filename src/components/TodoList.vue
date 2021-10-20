@@ -12,19 +12,26 @@
   </div>
 </template>
 
+
 <script>
 import TodoItem from "@/components/TodoItem";
+// import {ref} from 'vue';
 
 export default {
   props: ["todos"],
   components: {
-    TodoItem: TodoItem,
+  TodoItem: TodoItem,
   },
-  methods: {
-    removeTodo(id) {
-      this.$emit("remove-todo", id);
-    },
-  },
+
+  setup: (props,{emit}) => {
+    const removeTodo = (id) => {
+    emit("remove-todo", id);
+    }
+    return {
+      removeTodo
+    }
+  }
+ 
 };
 </script>
 
