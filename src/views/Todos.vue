@@ -24,35 +24,35 @@ import TodoList from "@/components/TodoList";
 import AddTodo from "@/components/AddTodo";
 import axios from 'axios';
 import Loading from "@/components/Loading.vue";
-
+import {ref,onMounted} from "vue";
 
 export default {
   name: "App",
-  data() {
-    return {
-      todos: [],
-      loading:true
-    };
+  components: {
+    TodoList: TodoList,
+    AddTodo: AddTodo,
+    Loading:Loading
   },
-  
-  methods: {
-    async removeTodo(id) {
-    this.todos = this.todos.filter((elem) => {
-      return elem.id !== id;
-    });
-      await axios.delete("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json")
-    },
-    addTodo(todo) {
-      this.todos.push(todo)
+
+  setup: () => {
+    const todos = ref ([])
+    const loading = ref (true)
+    
+    async function removeTodo(id) {
+      await axios.delete(`https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`)
+      todos.value = todos.value.filter((elem) => {
+        return elem.id !== id;
+    })}
+
+    function addTodo(todo) {
+      todos.value.push(todo)
       axios.post("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos.json", todo).then(
        response => {
          console.log(response)
        })
-       .catch(error => console.log(error))
-  },
+       .catch(error => console.log(error))}
 
-    async fetchPost() {
-      // setTimeout(()=>{
+    async function fetchPost() {
         const {data} = await axios.get("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos.json")
         const res = Object.keys(data).map((key) => {
           return {
@@ -62,25 +62,20 @@ export default {
           }
         })
         console.log(res)
-        this.todos = res
-        this.loading = false
-        // fetch('https://jsonplaceholder.typicode.com/todos?_limit=3')
-        // .then(response => response.json())
-        // .then(json =>{
-        //   this.todos = json
-        //   this.loading = false
-        // })
-        // },4000)
+        todos.value = res
+        loading.value = false
+    }
 
-    },
-  },
-  mounted(){
-      this.fetchPost()
-    },
-  components: {
-    TodoList: TodoList,
-    AddTodo: AddTodo,
-    Loading:Loading
+    onMounted (fetchPost)
+    
+    
+    return {
+      todos,
+      loading,
+      removeTodo,
+      addTodo,
+      fetchPost,
+    }
   }
 };
 </script>

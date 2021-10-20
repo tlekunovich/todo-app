@@ -1,7 +1,7 @@
 <template todo.completemplate>
   <li>
     <span :class="{ done: todo.completed }">
-      <input type="checkbox" v-on:change="markComplete" />
+      <input type="checkbox" @change="markComplete" />
       <strong>{{ index + 1 }}.</strong>
       {{ todoProps.title }}
     </span>

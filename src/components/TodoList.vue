@@ -3,10 +3,10 @@
     <ul>
       <TodoItem
         v-for="(todo, i) in todos"
-        v-bind:key="todo.id"
-        v-bind:todoProps="todo"
+        :key="todo.id"
+        :todoProps="todo"
         :index="i"
-        v-on:remove-todo="removeTodo"
+        @remove-todo="removeTodo"
       />
     </ul>
   </div>
@@ -15,7 +15,6 @@
 
 <script>
 import TodoItem from "@/components/TodoItem";
-// import {ref} from 'vue';
 
 export default {
   props: ["todos"],
