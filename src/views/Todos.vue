@@ -15,7 +15,7 @@
         No todos!
       </div>
 
-      <router-link to='/'>Home</router-link>
+     <button class="btn"> <router-link to='/'>Home</router-link> </button>
   </div>
 </template>
 
@@ -82,5 +82,19 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top:50px ;
+  }
+
+  .btn a{
+    text-decoration: none;
+    color: black;
+  }
+
+  .btn{
+    height: 25px;
+  padding: 0 5px;
+  background-color: #EFEFEF(142, 178, 232,0.5);
+  border:1px solid #d0d0d0;
+  border-radius: 2px;
   }
 </style>

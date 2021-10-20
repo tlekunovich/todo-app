@@ -2,11 +2,11 @@
   <li>
     <span :class="{ done: todo.completed }">
       <input type="checkbox" v-on:change="markComplete" />
-      <strong>{{ index + 1 }}</strong>
+      <strong>{{ index + 1 }}.</strong>
       {{ todoProps.title }}
     </span>
     <button class="rm" @click="$emit('remove-todo', todoProps.id)">
-      &times;
+     x
     </button>
   </li>
 </template>
@@ -46,10 +46,15 @@ li {
   border-radius: 10px;
 }
 .rm {
-  background: red;
-  color: #fff;
+  background: #EFEFEF;
+  color: rgba(0, 0, 0,0.8);
   border-radius: 50%;
   font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border:1px solid rgb(90, 90, 90);
+  display: flex;
+  justify-content:center;
 }
 input {
   margin-right: 1rem;
