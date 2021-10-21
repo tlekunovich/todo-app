@@ -5,13 +5,14 @@
       @addTodo='addTodo'
       :todos="todos"
       />
-      <Loading v-if="loading"/>
+      <Loading v-if="loading "/>
+    
     <TodoList 
       :todos="todos" 
       @remove-todo="removeTodo" 
       v-else-if="todos.length"
       />
-      <div class="message" v-else>
+      <div class="message" v-else >
         No todos!
       </div>
 
@@ -29,14 +30,13 @@ import {ref,onMounted} from "vue";
 export default {
   name: "App",
   components: {
-    TodoList: TodoList,
-    AddTodo: AddTodo,
-    Loading:Loading
+    TodoList, AddTodo, Loading,
   },
 
   setup: () => {
     const todos = ref ([])
     const loading = ref (true)
+    const alert = ref (null);
     
     async function removeTodo(id) {
       await axios.delete(`https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos/${id}.json`)
@@ -53,6 +53,7 @@ export default {
        .catch(error => console.log(error))}
 
     async function fetchPost() {
+        try {
         const {data} = await axios.get("https://todo-36978-default-rtdb.europe-west1.firebasedatabase.app/todos.json")
         const res = Object.keys(data).map((key) => {
           return {
@@ -64,12 +65,17 @@ export default {
         console.log(res)
         todos.value = res
         loading.value = false
+        } catch (e) {
+          loading.value=false
+          console.log(e.message)
+        }
     }
 
     onMounted (fetchPost)
     
     
     return {
+      alert,
       todos,
       loading,
       removeTodo,
